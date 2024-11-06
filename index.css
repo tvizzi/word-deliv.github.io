@@ -1,0 +1,475 @@
+:root {
+  --default-font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+  --rpx: 100vw / 1920;
+  --success-bg-color: #ff8a44; 
+  --success-text-color: #ffffff;
+}
+
+html, body {
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  overflow: auto;
+}
+
+.main-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh; 
+  overflow: hidden;
+}
+
+.main-container,
+.main-container * {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  outline: 0;
+  font-family: var(--default-font-family); 
+}
+
+.top-warehouse {
+  position: absolute;
+  width: 100%;
+  height: 100%; 
+  top: 0;
+  left: 0;
+  background: url(images/collage.jpg) no-repeat center;
+  background-size: cover;
+  z-index: 7;
+}
+
+.rectangle {
+  position: absolute;
+  width: 100%; 
+  height: 100%; 
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 8;
+}
+
+.flex-row {
+  position: relative;
+  width: 100%; 
+  height: calc(137.33331298828125 * var(--rpx));
+  margin: 0 auto;
+  z-index: 14;
+}
+
+.rectangle-1 {
+  position: absolute;
+  width: 350px; 
+  height: calc(137.19557189941406 * var(--rpx)); 
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  z-index: 14;
+}
+
+.logo-upscale {
+  position: relative;
+  width: 90%; 
+  height: 70%; 
+  background: url(images/logo.svg) no-repeat center;
+  background-size: contain; 
+  z-index: 16;
+  overflow: hidden;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  margin-top: 15px; 
+  margin-left: 20px; 
+}
+
+.ellipse {
+  position: absolute;
+  width: calc(650 * var(--rpx)); 
+  height: calc(137 * var(--rpx));
+  top: 0;
+  left: 350px;
+  cursor: pointer;
+  background: #ff8a44;
+  border: none;
+  z-index: 13;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leave-request {
+  color: #000000;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(52 * var(--rpx)); 
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.world-delivery {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  width: calc(893 * var(--rpx));
+  height: calc(416 * var(--rpx));
+  margin: calc(177.3333740234375 * var(--rpx)) auto 0;
+  color: #FFC107; /* Изменение цвета текста на светло-оранжевый */
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(170.66665649414062 * var(--rpx));
+  font-weight: 700;
+  line-height: calc(207.83460998535156 * var(--rpx));
+  text-align: center;
+  text-overflow: initial;
+  z-index: 17;
+  overflow: hidden;
+}
+
+
+/* Стили для формы */
+.form-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; /* Обеспечиваем, что форма не выйдет за границы */
+  max-width: 400px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: var(--default-font-family); /* Применение шрифта к форме */
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-family: var(--default-font-family); /* Применение шрифта к заголовку формы */
+}
+
+.close-button {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.form-container input,
+.form-container textarea,
+.form-container button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: var(--default-font-family); /* Применение шрифта к полям формы */
+  box-sizing: border-box;
+}
+
+.form-container button {
+  background-color: #ff8a44;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: var(--default-font-family); /* Применение шрифта к кнопке */
+}
+
+.form-container button:hover {
+  background-color: #e77c3c;
+}
+
+/* Стили для всплывающего сообщения */
+#successMessage {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--success-bg-color) !important; /* Оранжевый фон с !important */
+  color: var(--success-text-color) !important; /* Белый текст с !important */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1001; /* Выше, чем форма */
+  font-family: var(--default-font-family); /* Применение шрифта к сообщению */
+  text-align: center;
+  max-width: 90%; /* Ограничение ширины для предотвращения вылезания за пределы экрана */
+  box-sizing: border-box;
+}
+
+/* Дополнительное правило для центрирования */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.burger-menu {
+  position: absolute;
+  top: 20px;
+  right: 100px; /* Сдвигаем бургер-меню левее */
+  width: 45px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+}
+
+.burger-menu img {
+  width: 100%;
+  height: auto;
+}
+
+
+.burger-menu .line {
+  width: 100%;
+  height: 4px;
+  background-color: #ff8a44;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.burger-menu .short-line {
+  width: 75%; /* Средняя линия короче на 25% */
+}
+
+/* Анимация для открытия бургер-меню */
+.burger-menu.active .line:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.burger-menu.active .line:nth-child(2) {
+  opacity: 0; /* Скрытие средней линии */
+}
+
+.burger-menu.active .line:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.burger-menu-inside {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.burger-menu-inside .line {
+  width: 30px;
+  height: 4px;
+  background-color: #ff8a44;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -350px; /* Начальная позиция за экраном */
+  width: 350px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar-logo {
+  position: absolute;
+  top: 80px; /* немного ниже */
+  left: 50%; /* центрирование по горизонтали */
+  transform: translateX(-50%); /* центрирование по горизонтали */
+  width: 80%;
+  z-index: 1002;
+}
+
+@media (max-width: 768px) {
+  .sidebar-logo {
+    top: 60px; /* измените значение для маленьких экранов, если нужно */
+  }
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sidebar-menu .menu-item {
+  padding: 25px 0;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: 400;
+  position: relative;
+  font-size: 24px; /* Размер шрифта */
+}
+
+.sidebar-menu .menu-item::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 50%; /* Ширина линии под пунктами меню */
+  height: 2px;
+  background-color: #ff8a44; /* Цвет линии */
+}
+
+.sidebar-menu .menu-item:hover {
+  color: #ff8a44;
+}
+
+/* Затемняющий слой */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+  z-index: 999; /* Располагается перед основным контентом, но за сайдбаром */
+  display: none; /* Скрыт по умолчанию */
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Плавный переход для затемнения */
+}
+
+/* Активное состояние затемняющего слоя */
+.overlay.active {
+  display: block;
+  opacity: 1; /* Затемнение становится видимым */
+}
+
+.burger-icon {
+  width: 50px; /* Ширина иконки, можно изменить по вашему усмотрению */
+  height: 40px; /* Высота иконки */
+  cursor: pointer;
+}
+
+.burger-menu, .burger-menu-inside {
+  background: none;
+  border: none;
+  z-index: 1001;
+  cursor: pointer;
+  padding: 0; /* Убираем отступы */
+}
+
+.burger-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.burger-menu-inside {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Добавим градиент к фону контейнера */
+.rectangle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url(images/collage.jpg) no-repeat center;
+  background-size: cover;
+  z-index: 8;
+}
+
+/* Анимация для заголовка */
+.world-delivery {
+  color: white;
+  font-size: calc(170.66665649414062 * var(--rpx));
+  font-weight: 700;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+
+  text-shadow: -5px -5px 0 #ff8a44, 5px -5px 0 #ff8a44, -5px 5px 0 #ff8a44, 5px 5px 0 #ff8a44;
+}
+
+/* Ключевые кадры для анимации заголовка */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Градиентная кнопка "Оставить заявку" */
+.ellipse {
+  background: linear-gradient(135deg, #ff8a44, #e77c3c);
+  transition: background 0.3s ease, transform 0.2s;
+}
+.ellipse:hover {
+  background: linear-gradient(135deg, #e77c3c, #ff8a44);
+  transform: scale(1.05);
+}
+
+/* Тень и плавность для меню */
+.sidebar-menu .menu-item {
+  padding: 25px 0;
+  font-size: 24px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+.sidebar-menu .menu-item:hover {
+  color: #ff8a44;
+  background: rgba(255, 138, 68, 0.1);
+}
+
+/* Анимация появления для формы */
+.form-container {
+  animation: scaleUp 0.3s ease-out;
+}
+@keyframes scaleUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Новая тень для всплывающего сообщения об успешной отправке */
+#successMessage {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
